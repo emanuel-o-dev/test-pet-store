@@ -1,5 +1,5 @@
 import { Stack, useGlobalSearchParams } from "expo-router";
-import { Text, View } from "react-native";
+import { Alert, Text, View } from "react-native";
 
 import HeaderRight from "../../../components/HeaderRight";
 import Loading from "../../../components/Loading";
@@ -16,6 +16,7 @@ export default function PetDetails() {
 
   const onModalClose = () => {
     setIsModalVisible(false);
+    Alert.alert("Pet Update successfully!");
     refresh();
   };
 
@@ -43,8 +44,8 @@ export default function PetDetails() {
       <Text style={globalStyles.title}>Pet Details</Text>
       <Text>id: {id}</Text>
       <Text>name: {pet.name}</Text>
-      <Text>name: {pet.age}</Text>
-      <Text>name: {pet.type}</Text>
+      <Text>idade: {pet.age}</Text>
+      <Text>tipo: {pet.type}</Text>
       <StyledButton
         title="Update pet"
         onPress={() => setIsModalVisible(true)}

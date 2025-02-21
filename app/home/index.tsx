@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import { FlatList, Text, View } from "react-native";
+import { Alert, FlatList, Text, View } from "react-native";
 
 import Pet from "@/types/Pet";
 import useCollection from "@/firebase/hooks/useCollection";
@@ -20,6 +20,7 @@ export default function Home() {
 
   const onModalClose = () => {
     setIsModalVisible(false);
+    Alert.alert("Pet created successfully!");
     refreshData();
   };
 
@@ -42,6 +43,7 @@ export default function Home() {
       <StyledButton
         title="Create pet"
         onPress={() => setIsModalVisible(true)}
+        testID="create-pet-button"
       />
 
       {loading ? (

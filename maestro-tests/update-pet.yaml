@@ -1,0 +1,36 @@
+appId: "com.test.petstore"
+---
+- openLink: exp://127.0.0.1:8081
+- assertVisible: "Home"  
+- tapOn:
+    text: "View pet Details"
+- assertVisible: "Pet"  
+- tapOn:
+    text: "Update pet"
+- assertVisible: "Fill the form"  
+- tapOn:
+    id: name-input
+- eraseText  
+- inputText:
+    text: "Buddy"  
+- tapOn:
+    id: age-input  
+- eraseText
+- inputText:
+    text: "5"
+- tapOn:
+    id: pet-picker   
+- tapOn:
+    text: Dog
+- tapOn:
+    id: submit-button  
+- extendedWaitUntil:
+    visible: "Pet Update successfully!"  
+    timeout: 10000
+- tapOn:
+    text: "ok"
+- assertNotVisible: "Fill the form"
+
+- assertVisible: "name: Buddy" 
+- assertVisible: "idade: 5" 
+- assertVisible: "tipo: dog" 

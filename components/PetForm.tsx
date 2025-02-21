@@ -2,7 +2,6 @@ import { View, TextInput, StyleSheet, Alert } from "react-native";
 import React, { useState } from "react";
 import { Picker } from "@react-native-picker/picker";
 import StyledButton from "./StyledButton";
-import useCollection from "@/firebase/hooks/useCollection";
 import Pet from "@/types/Pet";
 
 interface PetFormsProps {
@@ -27,6 +26,7 @@ export default function PetForm({
   const [name, setName] = useState(pet?.name ?? "");
   const [age, setAge] = useState(pet?.age ?? "");
   const [selectedPet, setSelectedPet] = useState(pet?.type ?? "");
+
   return (
     <View style={styles.container}>
       <TextInput
@@ -34,6 +34,7 @@ export default function PetForm({
         value={name}
         placeholder="Name"
         onChangeText={setName}
+        testID="name-input"
       />
       <TextInput
         style={styles.input}
@@ -43,10 +44,12 @@ export default function PetForm({
         aria-valuemax={30}
         aria-valuemin={0}
         inputMode="numeric"
+        testID="age-input"
       />
       <Picker
+        testID="pet-picker"
         selectedValue={selectedPet}
-        onValueChange={(itemValue, itemIndex) => setSelectedPet(itemValue)}
+        onValueChange={(itemValue) => setSelectedPet(itemValue)}
         style={styles.input}
         mode="dropdown"
       >
@@ -54,7 +57,8 @@ export default function PetForm({
         <Picker.Item label="Cat" value="cat" />
       </Picker>
       <StyledButton
-        title={title ?? "create"}
+        title={title ?? "Create"}
+        testID="submit-button"
         onPress={async () => {
           try {
             submit({
@@ -65,16 +69,12 @@ export default function PetForm({
             onClose();
             formReset();
           } catch (error: any) {
-            Alert.alert("Create Book error", error.toString());
+            Alert.alert("Create Pet error", error.toString());
           }
         }}
       />
     </View>
   );
-}
-
-{
-  /* */
 }
 
 const styles = StyleSheet.create({

@@ -7,12 +7,14 @@ import useAuth from "../firebase/hooks/useAuth";
 import globalStyles from "../styles/globalStyles";
 import StyledButton from "@/components/StyledButton";
 
-export default function _screen() {
+export default function LoginScreen() {
   const { user, login, loading } = useAuth();
   const router = useRouter();
 
-  const [email, setEmail] = useState("user@example.com");
-  const [password, setPassword] = useState("123456");
+  // const [email, setEmail] = useState("user@example.com");
+  // const [password, setPassword] = useState("123456");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     if (user) {
@@ -34,12 +36,14 @@ export default function _screen() {
         style={globalStyles.input}
         value={email}
         onChangeText={setEmail}
+        testID="email-input"
       />
       <TextInput
         style={globalStyles.input}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
+        testID="password-input"
       />
 
       <StyledButton
@@ -53,6 +57,7 @@ export default function _screen() {
           }
         }}
         style={{ marginTop: 12 }}
+        testID="signIn-button"
       />
     </View>
   );

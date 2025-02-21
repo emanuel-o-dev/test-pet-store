@@ -1,0 +1,14 @@
+appId: "com.test.petstore"
+---
+- openLink: exp://127.0.0.1:8081
+- assertVisible: "Login"
+- tapOn:
+    id: email-input
+- inputText:
+    text: "user@example.com"
+- tapOn:
+    id: "password-input"
+- inputText:
+    text: "123456"
+- tapOn: "Login"
+- assertVisible: "Home"
