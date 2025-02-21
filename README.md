@@ -29,8 +29,8 @@ Eles garantem que diferentes componentes e telas funcionam corretamente em conju
 
 ### Instalação das Dependências:
 
+# Instalar Jest e configuração para Expo
 
-    # Instalar Jest e configuração para Expo
     npx expo install jest-expo jest @types/jest "--" --dev  
     npx expo install @testing-library/react-native "--" --dev
 
@@ -53,21 +53,11 @@ Ou, caso queira rodar um teste específico:
 ### Testes E2E com Maestro
 Certifique-se de que o emulador Android ou um dispositivo físico está ativo e execute:
 
-    maestro test e2e/fluxo_login.yaml
-
-
-Caso esteja testando via Expo Go:
-
-      yaml
-    appId: host.exp.exponent
-    ---
-    - launchApp
-    - tapOn: "Login"
-    - inputText: "email@example.com"
-    - tapOn: "Entrar"
-    - assertVisible: "Erro: Credenciais inválidas"
-
-
+     maestro test maestro-tests/ <nome_do_teste> .yaml
+     
+# Se estiver dando erro no pacote do teste rode 
+     npx expo prebuild
+     
 ## 4. Ambiente de Execução
 - **Testes unitários**: podem ser rodados em qualquer ambiente (Windows, Mac, Linux).
 - **Testes E2E**: recomendados em Android (emulador ou dispositivo físico).
